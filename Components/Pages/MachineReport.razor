@@ -1,0 +1,45 @@
+﻿@page "/Report/{machineName}"
+@using SmartFactory_maui.Models;
+<div class="card mx-3 my-3">
+    <div class="row g-0" style="background-color:@backgroundColor">
+        <div class="col g-0">
+            <img src="Images/smartfactory.png" width="100" height="100" />
+        </div>
+        <div class="col g-1">
+            <h3 class="mt-4 mr-1" style="color:white;text-align:center;">@machine.MachineName</h3>
+        </div>
+        <div class="col g-2">
+            <h5 class="mt-4" style="color:white;text-align:center;">
+                @machine.MachineState
+            </h5>
+        </div>
+
+    </div>
+    <div class="row g-1">
+        <div class="col-md-6">
+            <div class="row g-0">
+                <div class="col g-0 ml-4">
+
+                    <MudChart ChartType="MudBlazor.ChartType.Donut" InputData="@RunAnalysisChartData" ChartOptions="@RunAnalysisChartOptions" InputLabels="@RunAnalysisChartLabel">
+                        <CustomGraphics>
+                            <text class="donut-inner-text" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="black" font-family="Helvetica" font-size="4">Run (@machine.Run)%</text>
+                        </CustomGraphics>
+                    </MudChart>
+                </div>
+                <div class="col g-1 ml-4">
+                    <MudChart ChartType="MudBlazor.ChartType.Donut" InputData="OEEAnalysisChartData" ChartOptions="@OEEAnalysisChartOptions" InputLabels="@OEEAnalysisChartLabel">
+                        <CustomGraphics>
+                            <text class="donut-inner-text" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="black" font-family="Helvetica" font-size="4">OEE (@machine.OEE)%</text>
+                        </CustomGraphics>
+                    </MudChart>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <BarChart @ref="quantityAnalysisChart" Width="300" Height="150" Class="mb-4" />
+
+
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,9 @@
+﻿@page "/MachineDashboard"
+@page "/Index"
+<h3>Dashboard</h3>
+@{
+    @foreach (var machine in Machines)
+    {
+        <MachineCard machine="@machine" />
+    }
+}
